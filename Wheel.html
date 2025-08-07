@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>عجلة الحظ - Reality Lottery</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      text-align: center;
+      padding-top: 50px;
+    }
+
+    #wheel {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      border: 10px solid #333;
+      margin: auto;
+      position: relative;
+      overflow: hidden;
+      transition: transform 5s ease-out;
+    }
+
+    .slice {
+      width: 50%;
+      height: 50%;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform-origin: 0% 0%;
+      background-color: lightblue;
+      border: 1px solid #ccc;
+      text-align: right;
+      padding: 10px;
+      font-size: 14px;
+    }
+
+    #spin {
+      margin-top: 30px;
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: #f76b1c;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+
+    #arrow {
+      width: 0;
+      height: 0;
+      border-left: 20px solid transparent;
+      border-right: 20px solid transparent;
+      border-bottom: 30px solid red;
+      margin: auto;
+      margin-bottom: 10px;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 20px;
+      color: #1a73e8;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="arrow"></div>
+
+  <div id="wheel"></div>
+
+  <button id="spin">لف العجلة</button>
+
+  <div id="result"></div>
+
+  <script>
+    const prizes = [
+      "10,000 دولار 💰",
+      "iPhone 15 📱",
+      "100$ Amazon 🎁",
+      "محاولة أخرى 🔄",
+      "بدون جائزة 🙁",
+      "سماعة بلوتوث 🎧"
+    ];
+
+    const wheel = document.getElementById("wheel");
+    const result = document.getElementById("result");
+
+    for (let i = 0; i < prizes.length; i++) {
+      const slice = document.createElement("div");
+      slice.className = "slice";
+      slice.style.transform = `rotate(${(360 / prizes.length) * i}deg) skewY(-60deg)`;
+      slice.style.backgroundColor = i % 2 === 0 ? "#FFD700" : "#FFA500";
+      slice.textContent = prizes[i];
+      wheel.appendChild(slice);
+    }
+
+    document.getElementById("spin").addEventListener("click", () => {
+      const randomDeg = Math.floor(3600 + Math.random() * 360);
+      wheel.style.transform = `rotate(${randomDeg}deg)`;
+
+      const index = Math.floor(((360 - (randomDeg % 360)) % 360) / (360 / prizes.length));
+      setTimeout(() => {
+        result.textContent = `🎉 مبروك! ربحت: ${prizes[index]}`;
+      }, 5000);
+    });
+  </script>
+
+  <br><br>
+  <a href="index.html">⬅ العودة للصفحة الرئيسية</a>
+
+</body>
+</html>
