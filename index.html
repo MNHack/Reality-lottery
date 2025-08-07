@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reality Lottery</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #ffecd2, #fcb69f);
+      color: #333;
+    }
+    header {
+      padding: 1rem 2rem;
+      background-color: #fff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav a {
+      margin: 0 1rem;
+      text-decoration: none;
+      color: #f76b1c;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    main {
+      padding: 2rem;
+      text-align: center;
+    }
+    .countdown {
+      font-size: 2rem;
+      margin: 1rem 0;
+    }
+    form input, form button {
+      padding: 0.75rem;
+      margin: 0.5rem;
+      font-size: 1rem;
+      width: 250px;
+    }
+    form button {
+      background-color: #f76b1c;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    form button:hover {
+      background-color: #d95d00;
+    }
+    footer {
+      padding: 2rem;
+      background-color: #fff;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Reality Lottery</h1>
+    <nav>
+      <a href="index.html">الرئيسية</a>
+      <a href="prizes.html">الجوائز</a>
+      <a href="register.html">التسجيل</a>
+      <a href="contact.html">تواصل معنا</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>السحب القادم بعد:</h2>
+    <div class="countdown" id="countdown">00:00:00</div>
+
+    <h2>سجّل الآن للمشاركة</h2>
+    <form onsubmit="event.preventDefault(); alert('تم التسجيل بنجاح!');">
+      <input type="text" placeholder="الاسم الكامل" required /><br />
+      <input type="email" placeholder="البريد الإلكتروني" required /><br />
+      <input type="tel" placeholder="رقم الهاتف" required /><br />
+      <button type="submit">سجّل الآن</button>
+    </form>
+  </main>
+
+  <footer>
+    <p>للتواصل: info@realitylottery.com</p>
+    <p>&copy; 2025 Reality Lottery. جميع الحقوق محفوظة.</p>
+  </footer>
+
+  <script>
+    const countdown = document.getElementById("countdown");
+    const targetDate = new Date("2025-08-15T20:00:00").getTime();
+
+    const timer = setInterval(function () {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdown.innerHTML = `${hours} ساعة ${minutes} دقيقة ${seconds} ثانية`;
+
+      if (distance < 0) {
+        clearInterval(timer);
+        countdown.innerHTML = "انتهى السحب!";
+      }
+    }, 1000);
+  </script>
+</body>
+</html>

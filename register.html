@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>التسجيل - Reality Lottery</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e9f6ff;
+      text-align: center;
+      padding: 2rem;
+    }
+    h1 {
+      color: #1a73e8;
+    }
+    form input, form button {
+      padding: 0.75rem;
+      margin: 0.5rem;
+      width: 250px;
+      font-size: 1rem;
+    }
+    form button {
+      background-color: #1a73e8;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    form button:hover {
+      background-color: #0c57c0;
+    }
+    a {
+      display: inline-block;
+      margin-top: 2rem;
+      text-decoration: none;
+      color: #1a73e8;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>نموذج التسجيل</h1>
+  <form onsubmit="event.preventDefault(); alert('تم التسجيل بنجاح!');">
+    <input type="text" placeholder="الاسم الكامل" required /><br />
+    <input type="email" placeholder="البريد الإلكتروني" required /><br />
+    <input type="tel" placeholder="رقم الهاتف" required /><br />
+    <button type="submit">سجّل الآن</button>
+  </form>
+
+  <a href="index.html">⬅ العودة للصفحة الرئيسية</a>
+</body>
+</html>
